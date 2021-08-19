@@ -1,10 +1,10 @@
 let local = localStorage.getItem("elementos");
-let testo = JSON.parse(local);
+let texto = JSON.parse(local);
 
-if (testo) {
+if (texto) {
     console.log('Ya Creado')
 }else{
-    testo=[]
+    texto=[]
     console.log('Creado')
 }
 
@@ -12,7 +12,7 @@ function addItem() {
     let item=document.getElementById('item').value
     let itemCost=document.getElementById('itemCost').value
     if(item){
-        testo.push({'descripcion':item,'valor':itemCost})
+        texto.push({'descripcion':item,'valor':itemCost})
     }
     showItem()
 
@@ -25,21 +25,21 @@ function showItem() {
     document.getElementById('item').value=" "
     document.getElementById('itemCost').value=" "
     let html=''
-    for (let i = 0; i < testo.length; i++) {
+    for (let i = 0; i < texto.length; i++) {
 
-        html+= `<div class="col-4">${testo[i].descripcion} </div>`
-        html+= `<div class="col-4">${testo[i].valor} </div>`
+        html+= `<div class="col-4">${texto[i].descripcion} </div>`
+        html+= `<div class="col-4">${texto[i].valor} </div>`
         html+= `<div class="col-4"> <a href="#" class ="btn btn-danger" onclick="deleteItem(${i})">X</a> </div>`
         
     }
     
-    const myJ = JSON.stringify(testo);
+    const myJ = JSON.stringify(texto);
     localStorage.setItem("elementos", myJ);
     document.getElementById('items').innerHTML=html
 
 }
 
 function deleteItem(item) {
-    testo.splice(item,1)
+    texto.splice(item,1)
     showItem()
 }
